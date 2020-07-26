@@ -52,7 +52,7 @@ describe('Markdown widget link', () => {
         .type(text)
         .setSelection(text)
         .clickLinkButton();
-      cy.confirmMarkdownEditorContent(`<p><a>Netlify CMS</a></p>`);
+      cy.confirmMarkdownEditorContent(`<p><a>${text}</a></p>`);
       cy.clickModeToggle();
       cy.confirmRawEditorContent(`[${text}](${link})`);
     });
