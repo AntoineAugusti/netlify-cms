@@ -7,6 +7,7 @@ describe('Markdown widget link', () => {
   });
 
   beforeEach(() => {
+    cy.clock(0, ['Date']);
     cy.clearLocalStorage();
     cy.reload();
     cy.loginAndNewPost();
@@ -24,6 +25,9 @@ describe('Markdown widget link', () => {
         cy.stub(win, 'prompt').returns(link);
       });
       cy.focused().clickLinkButton();
+
+      cy.tick(300);
+
       cy.confirmMarkdownEditorContent(`<p><a>${link}</a></p>`);
       cy.clickModeToggle();
       cy.confirmRawEditorContent(`<${link}>`);
@@ -35,6 +39,9 @@ describe('Markdown widget link', () => {
         cy.stub(win, 'prompt').returns(link);
       });
       cy.focused().clickLinkButton();
+
+      cy.tick(300);
+
       cy.confirmMarkdownEditorContent(`<p><a>${link}</a></p>`);
       cy.clickModeToggle();
       cy.confirmRawEditorContent(`[${link}](${link})`);
@@ -52,6 +59,9 @@ describe('Markdown widget link', () => {
         .type(text)
         .setSelection(text)
         .clickLinkButton();
+
+      cy.tick(300);
+
       cy.confirmMarkdownEditorContent(`<p><a>${text}</a></p>`);
       cy.clickModeToggle();
       cy.confirmRawEditorContent(`[${text}](${link})`);
