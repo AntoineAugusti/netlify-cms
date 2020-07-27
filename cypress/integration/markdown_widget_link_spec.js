@@ -1,5 +1,10 @@
 import '../utils/dismiss-local-backup';
 
+const advanceClock = () => {
+  cy.tick(300);
+  cy.tick(300);
+};
+
 describe('Markdown widget link', () => {
   before(() => {
     Cypress.config('defaultCommandTimeout', 4000);
@@ -26,7 +31,7 @@ describe('Markdown widget link', () => {
       });
       cy.focused().clickLinkButton();
 
-      cy.tick(300);
+      advanceClock();
 
       cy.confirmMarkdownEditorContent(`<p><a>${link}</a></p>`);
       cy.clickModeToggle();
@@ -40,7 +45,7 @@ describe('Markdown widget link', () => {
       });
       cy.focused().clickLinkButton();
 
-      cy.tick(300);
+      advanceClock();
 
       cy.confirmMarkdownEditorContent(`<p><a>${link}</a></p>`);
       cy.clickModeToggle();
@@ -60,7 +65,7 @@ describe('Markdown widget link', () => {
         .setSelection(text)
         .clickLinkButton();
 
-      cy.tick(300);
+      advanceClock();
 
       cy.confirmMarkdownEditorContent(`<p><a>${text}</a></p>`);
       cy.clickModeToggle();
